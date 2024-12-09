@@ -17,7 +17,7 @@ public class JournalController {
     @Autowired
     private JournalEntityService journalEntityService;
 
-    @PostMapping("/add")
+    @PostMapping
     public ResponseEntity<JournalEntity> addJournal(@RequestBody JournalEntity journalEntity){
         try{
             return new ResponseEntity<>(journalEntityService.saveJournal(journalEntity), HttpStatus.CREATED);
@@ -31,21 +31,21 @@ public class JournalController {
         return new ResponseEntity<>(journalEntityService.getAllJournals(), HttpStatus.OK);
     }
 
-    @GetMapping("/get/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<JournalEntity> getJournal(@PathVariable ObjectId id){
         JournalEntity journalEntity = journalEntityService.getJournalById(id);
         HttpStatus status = (journalEntity != null)? HttpStatus.OK : HttpStatus.NOT_FOUND;
         return new ResponseEntity<>(journalEntity, status);
     }
 
-    @PutMapping("/update")
+    @PutMapping
     public ResponseEntity<JournalEntity> updateJournal(@RequestBody JournalEntity newJournalEntity){
         JournalEntity journalEntity = journalEntityService.updateJournal(newJournalEntity);
         HttpStatus status = (journalEntity != null)? HttpStatus.OK : HttpStatus.NOT_FOUND;
         return new ResponseEntity<>(journalEntity, status);
     }
 
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteJournal(@PathVariable ObjectId id){
         JournalEntity journalEntity = journalEntityService.getJournalById(id);
         if(journalEntity == null){
