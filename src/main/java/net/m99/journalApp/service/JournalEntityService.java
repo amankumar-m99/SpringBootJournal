@@ -15,13 +15,13 @@ public class JournalEntityService {
     @Autowired
     private JournalRepository journalRepository;
 
-    public JournalEntity saveJournal(JournalEntity journalEntity){
+    public JournalEntity save(JournalEntity journalEntity){
         journalEntity.setDate(new Date());
         return journalRepository.save(journalEntity);
     }
 
-    public JournalEntity updateJournal(JournalEntity newJournalEntity){
-        JournalEntity oldJournalEntity = getJournalById(newJournalEntity.getId());
+    public JournalEntity update(JournalEntity newJournalEntity){
+        JournalEntity oldJournalEntity = getById(newJournalEntity.getId());
         if(oldJournalEntity == null){
             return null;
         }
@@ -34,15 +34,15 @@ public class JournalEntityService {
         return journalRepository.save(oldJournalEntity);
     }
 
-    public List<JournalEntity> getAllJournals(){
+    public List<JournalEntity> findAll(){
         return journalRepository.findAll();
     }
 
-    public JournalEntity getJournalById(ObjectId id){
+    public JournalEntity getById(ObjectId id){
         return journalRepository.findById(id).orElse(null);
     }
 
-    public void deleteJournalById(ObjectId id){
+    public void deleteById(ObjectId id){
         journalRepository.deleteById(id);
     }
 }
