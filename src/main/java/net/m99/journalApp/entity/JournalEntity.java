@@ -1,5 +1,6 @@
 package net.m99.journalApp.entity;
 
+import com.mongodb.lang.NonNull;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.NoArgsConstructor;
@@ -21,7 +22,10 @@ public class JournalEntity {
 
     @Id
     private ObjectId id;
+
+    @NonNull
     private String title;
+
     private String content;
     private Date date;
 }
