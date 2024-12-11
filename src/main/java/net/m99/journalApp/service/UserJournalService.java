@@ -48,7 +48,7 @@ public class UserJournalService {
 		if(journalEntity == null) {
 			return false;
 		}
-		userEntity.getJournalEntities().remove(journalEntity);
+		userEntity.getJournalEntities().removeIf(x -> x.getId().equals(id));
 		userEntityService.save(userEntity);
 		journalEntityService.deleteById(id);
 		return true;
