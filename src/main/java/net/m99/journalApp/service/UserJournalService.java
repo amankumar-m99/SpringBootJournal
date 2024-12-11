@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import net.m99.journalApp.entity.JournalEntity;
 import net.m99.journalApp.entity.UserEntity;
 import net.m99.journalApp.repository.JournalRepository;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class UserJournalService {
@@ -22,6 +23,7 @@ public class UserJournalService {
     @Autowired
     private JournalEntityService journalEntityService;
 
+	@Transactional
     public UserEntity saveUserJournal(String username, JournalEntity journalEntity){
     	UserEntity userEntity = userEntityService.findByUsername(username);
     	if(userEntity == null) {
